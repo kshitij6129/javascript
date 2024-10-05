@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAP</title>
+</head>
+<body>
+    <h2>MAP</h2>
+    <p id="output"></p>
+<script>
+const user1 = { name: 'John' };
+const user2 = { name: 'Alice' };
+
+const userData = new Map();
+
+// Using objects as keys
+userData.set(user1, { age: 30, city: 'New York' });
+userData.set(user2, { age: 25, city: 'Los Angeles' });
+
+// Access values using object keys
+a=(userData.get(user1));  // { age: 30, city: 'New York' }
+b=(userData.get(user2));  // { age: 25, city: 'Los Angeles' }
+result=(a,b)
+output.innerHTML = result
+</script>

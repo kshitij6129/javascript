@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Valency Checker</title>
+</head>
+<body>
+    <h2>Enter a chemical compound:</h2>
+    <input type="text" id="compoundInput" placeholder="Enter compound (e.g., NaCl, H2O)">
+    <button id="checkButton">Check Compound</button>
+
+    <h3>Result:</h3>
+    <p id="output"></p>
+
+    <script>
+        // List of elements and their charges
+        var positiveChargeElements = {
+            'Na': 1,
+            'K': 1,
+            'Mg': 2,
+            'Ca': 2,
+            'Al': 3,
+            'Ag':1,
+            'Cu':1,
+            'Zn':2,
+            
+
+        };
+
+        var negativeChargeElements = {
+            'Cl': 1,
+            'O': 2,
+            'S': 2,
+            'N': 3,
+            'P': 3,
+            'Br':1,
+
+
+        };
+
+        // Button click event
+        var checkButton = document.getElementById('checkButton');
+        checkButton.onclick = function() {
+            var compound = document.getElementById('compoundInput').value.trim();
+            var output = document.getElementById('output');
+            var result = "";
+
+            // Loop through the compound string manually
+            var i = 0;
+            while (i < compound.length) {
+                var element = compound[i]; // Get the first character (capital letter)
+                i++;
+
+                // Check if next character is a lowercase letter (part of the same element)
+                if (i < compound.length && compound[i] >= 'a' && compound[i] <= 'z') {
+                    element += compound[i];
+                    i++;
+                }
+
+                // Get quantity of the element if it's present, otherwise it's 1
+                var quantity = "";
+                while (i < compound.length && compound[i] >= '0' && compound[i] <= '9') {
+                    quantity += compound[i];
+                    i++;
+                }
+
+                if (quantity === "") {
+                    quantity = "1";
+                }
+
+                // Check if the element is in the positive or negative charge lists
+                if (positiveChargeElements[element] !== undefined) {
+                    result += element + " (Positive, Charge: " + positiveChargeElements[element] + ", Quantity: " + quantity + ")<br>";
+                } else if (negativeChargeElements[element] !== undefined) {
+                    result += element + " (Negative, Charge: " + negativeChargeElements[element] + ", Quantity: " + quantity + ")<br>";
+                } else {
+                    result += element + " (Unknown element)<br>";
+                }
+            }
+
+            // Display the result
+            output.innerHTML = result || "No valid elements found!";
+        };
+    </script>
+</body>
+</html>

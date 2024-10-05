@@ -1,0 +1,1 @@
+var name= "alice";age= 13;isStudent=true;
